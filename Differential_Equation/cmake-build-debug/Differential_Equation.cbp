@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/aleksey/programs/Differential_Equation/cmake-build-debug"/>
+				<Option working_dir="/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/aleksey/programs/Differential_Equation/cmake-build-debug"/>
+				<Option working_dir="/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/aleksey/programs/Differential_Equation/cmake-build-debug"/>
+				<Option working_dir="/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Differential_Equation">
-				<Option output="/home/aleksey/programs/Differential_Equation/cmake-build-debug/Differential_Equation" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/aleksey/programs/Differential_Equation/cmake-build-debug"/>
+				<Option output="/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Differential_Equation" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,15 +51,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 Differential_Equation"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 Differential_Equation"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Differential_Equation/fast">
-				<Option output="/home/aleksey/programs/Differential_Equation/cmake-build-debug/Differential_Equation" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/aleksey/programs/Differential_Equation/cmake-build-debug"/>
+				<Option output="/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Differential_Equation" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,29 +71,29 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 Differential_Equation/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 Differential_Equation/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/aleksey/programs/Parallelus_3/Differential_Equation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/aleksey/programs/Differential_Equation/include/Data.h">
+		<Unit filename="/home/aleksey/programs/Parallelus_3/Differential_Equation/include/Data.h">
 			<Option target="Differential_Equation"/>
 		</Unit>
-		<Unit filename="/home/aleksey/programs/Differential_Equation/include/Logic.h">
+		<Unit filename="/home/aleksey/programs/Parallelus_3/Differential_Equation/include/Logic.h">
 			<Option target="Differential_Equation"/>
 		</Unit>
-		<Unit filename="/home/aleksey/programs/Differential_Equation/main.c">
+		<Unit filename="/home/aleksey/programs/Parallelus_3/Differential_Equation/main.c">
 			<Option target="Differential_Equation"/>
 		</Unit>
-		<Unit filename="/home/aleksey/programs/Differential_Equation/src/Data.c">
+		<Unit filename="/home/aleksey/programs/Parallelus_3/Differential_Equation/src/Data.c">
 			<Option target="Differential_Equation"/>
 		</Unit>
-		<Unit filename="/home/aleksey/programs/Differential_Equation/src/Logic.c">
+		<Unit filename="/home/aleksey/programs/Parallelus_3/Differential_Equation/src/Logic.c">
 			<Option target="Differential_Equation"/>
 		</Unit>
-		<Unit filename="/home/aleksey/programs/Differential_Equation/CMakeLists.txt">
+		<Unit filename="/home/aleksey/programs/Parallelus_3/Differential_Equation/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
