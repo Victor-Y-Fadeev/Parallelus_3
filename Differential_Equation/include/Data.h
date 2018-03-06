@@ -16,6 +16,8 @@ Saver create_saver(char *output);
 
 Vector get_vector(Loader *loader);
 void save(Saver *saver, Result *result);
+int get_quantity_of_points(const Interval *interval);
+double get_h(const Interval *interval);
 
 double get_a(Vector *vector);
 double get_b(Vector *vector);
@@ -32,6 +34,3 @@ void set_alpha(Vector *vector, double alpha);
 void set_beta(Vector *vector, double beta);
 void set_x0(Vector *vector, double x0);
 void set_y0(Vector *vector, double y0);
-
-int get_quantity_of_points(const Interval *interval);
-double get_h(const Interval *interval);

@@ -1,25 +1,31 @@
 #include "../include/Logic.h"
 #include "../include/Data.h"
 
-typedef struct Result {
+
+typedef struct Result
+{
 	Vector *vector;
 	double points_x[];
 	double points_y[];
 
 } Result;
 
-Result create_result(double x[], double y[], Vector *vector) {
+
+Result create_result(double x[], double y[], Vector *vector)
+{
 	Result result;
 	result.points_x = x;
 	result.points_y = y;
 	result.vector = vector;
 }
 
-double phi( const double x, const double y) {
+double phi(const double x, const double y)
+{
 	return x * x + x * y + x;
 }
 
-double psi(const double x, const double y, Vector *vector) {
+double psi(const double x, const double y, Vector *vector)
+{
 	double a = get_a(vector);
 	double b = get_b(vector);
 	double c = get_c(vector);
@@ -28,7 +34,8 @@ double psi(const double x, const double y, Vector *vector) {
 	return a * x * x + b * x * y + c * y * y + alpha * x + beta * y;
 }
 
-Result solve_equation(Vector *vector, const Interval *interval) {
+Result solve_equation(Vector *vector, const Interval *interval)
+{
 	double x0 = get_x0(vector);
 	double y0 = get_y0(vector);
 	double h = get_h(interval);
@@ -59,5 +66,6 @@ Result solve_equation(Vector *vector, const Interval *interval) {
 		result_x[i] = x0;
 		result_y[i] = y0;
 	}
+
 	return create_result(result_x, result_y, vector);
 }
