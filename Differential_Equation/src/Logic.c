@@ -1,23 +1,6 @@
-#include "../include/Logic.h"
 #include "../include/Data.h"
+#include "../include/Logic.h"
 
-
-typedef struct Result
-{
-	Vector *vector;
-	double points_x[];
-	double points_y[];
-
-} Result;
-
-
-Result create_result(double x[], double y[], Vector *vector)
-{
-	Result result;
-	result.points_x = x;
-	result.points_y = y;
-	result.vector = vector;
-}
 
 double phi(const double x, const double y)
 {
@@ -34,20 +17,22 @@ double psi(const double x, const double y, Vector *vector)
 	return a * x * x + b * x * y + c * y * y + alpha * x + beta * y;
 }
 
-Result solve_equation(Vector *vector, const Interval *interval)
+// return: quantity of strange attractors, -1 if error appear, 1 if cycle was found
+int solve_equation(Vector *vector, const Interval *interval)
 {
 	double x0 = get_x0(vector);
 	double y0 = get_y0(vector);
-	double h = get_h(interval);
-	int quantity_of_points = get_quantity_of_points(interval);
+	double h = get_h(interval); //0.001
+
+	int quantity_of_points = get_quantity_of_points(interval); //9000
 	double k11, k21, k12, k22, k13, k23, k14, k24; // coefficients
-	double result_x[quantity_of_points];
-	double result_y[quantity_of_points];
 
-	result_x[0] = x0;
-	result_y[0] = y0;
+	int quantity = 0; // counter of strange attractors
+	int isIncrement = 0;
+	int last_direction = 0; //-1 == left, 1 == right, 0 == start value
+	double x0_last = x0;
 
-	for (int i = 1; i < quantity_of_points; ++i) {
+	for (int i = 0; i < quantity_of_points; ++i) {
 		k11 = h * phi(x0, y0);
 		k21 = h * psi(x0, y0, vector);
 
@@ -63,9 +48,32 @@ Result solve_equation(Vector *vector, const Interval *interval)
 		x0 = x0 + (k11 + k12 + k13 + k14) / 6;
 		y0 = y0 + (k21 + k22 + k23 + k24) / 6;
 
-		result_x[i] = x0;
-		result_y[i] = y0;
-	}
+		if (y0 == 0) {
+			if (x0_last > x0){
+				if(last_direction != -1){
+					if(last_direction == 0){
+						last_direction = -1;
+					}
+					else{
+						return -1; //WTF
+					}
+				}
+			}
+			else if (x0_last < x0){
+				if(last_direction != 1){
+					if(last_direction == 0){
+						last_direction = 1;
+					}
+					else{
+						return -1; //WTF
+					}
+				}
+			}
+			else{
+				return 1; // cycle
+			}
 
-	return create_result(result_x, result_y, vector);
+		}
+	}
+	return quantity;
 }

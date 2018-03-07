@@ -1,4 +1,12 @@
 #pragma once
 
+#include "Data.h"
 
-typedef struct Result Result;
+
+double phi(const double x, const double y);
+
+double psi(const double x, const double y, Vector *vector);
+
+int solve_equation(Vector *vector, const Interval *interval);
+
+int solve_equation(Vector *vector, const Interval *interval);
