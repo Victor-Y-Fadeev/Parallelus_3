@@ -61,3 +61,10 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
+
+# CLion
+.idea/
+!misc.xml
+!modules.xml
+cmake-build-debug/
+cmake-build-release/
