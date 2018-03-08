@@ -6,17 +6,12 @@
 
 void start(char *input, char *output)
 {
-	FILE *file;
-	file = fopen(input, "r");
-	char str[256] = {'\0'};
+	Loader *loader = create_loader(input);
+	Saver *saver = create_saver(output);
 
-	while (!feof(file))
-	{
-		fgets(str, 256, file);
-		printf("%s", str);
-	}
 
-	fclose(file);
+	delete_loader(loader);
+	delete_saver(saver);
 }
 
 int main(int argc, const char **argv)
