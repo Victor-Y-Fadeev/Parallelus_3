@@ -8,6 +8,9 @@ namespace Visualization
 {
     internal partial class EditorForm : Form
     {
-        
+        public EditorForm()
+        {
+            InitializeComponent();
+        }
     }
 }
