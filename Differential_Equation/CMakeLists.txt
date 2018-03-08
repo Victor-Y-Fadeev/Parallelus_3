@@ -3,4 +3,10 @@ project(Differential_equation C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Differential_equation main.c include/Data.h include/Logic.h src/Logic.c src/Data.c)
+add_executable(Differential_equation main.c
+                include/Structures.h
+                include/Logic.h
+                include/Files.h
+                src/Structures.c
+                src/Logic.c
+                src/Files.c)

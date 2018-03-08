@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Data.h"
+#include "Structures.h"
 
 
 double phi(const double x, const double y);

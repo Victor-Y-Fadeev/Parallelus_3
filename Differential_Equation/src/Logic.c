@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include "../include/Data.h"
 #include "../include/Logic.h"
+#include "../include/Structures.h"
 
 
 double phi(const double x, const double y)
@@ -25,13 +24,13 @@ int solve_equation(Vector *vector, const Interval *interval)
 	double y0 = get_y0(vector);
 	double h = get_h(interval);
 
-	int quantity_of_points = get_quantity_of_points(interval); // >= 9000
+	int quantity_of_points = get_points(interval); // >= 9000
 	double k11, k21, k12, k22, k13, k23, k14, k24; // coefficients
 	int last_attractor = 0; //-1 == left, 1 == right, 0 == start value
 	int new_attractor = 0; //-1 == left, 1 == right, 0 == start value
 	int quantity = 0; // counter of strange attractors
-	int quantity_of_jumps = get_quantity_of_jumps(interval);
-	double distance = get_distance_jump(interval);
+	int quantity_of_jumps = get_steps(interval);
+	double distance = get_distance(interval);
 
 	for (int i = 0; i < quantity_of_jumps; ++i) {
 		double x = x0;

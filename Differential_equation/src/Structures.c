@@ -1,4 +1,4 @@
-#include "../include/Data.h"
+#include "../include/Structures.h"
 #include <stdlib.h>
 
 
