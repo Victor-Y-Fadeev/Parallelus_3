@@ -4,31 +4,31 @@
 
 typedef struct Vector
 {
-	double a;
-	double b;
-	double c;
-	double alpha;
-	double beta;
-	double x0;
-	double y0;
+	float a;
+	float b;
+	float c;
+	float alpha;
+	float beta;
+	float x0;
+	float y0;
 } Vector;
 
 typedef struct Interval
 {
 	int steps;
-	double distance;
+	float distance;
 	int points;
-	double h;
+	float h;
 } Interval;
 
 
-Vector *create_vector(const double a
-					, const double b
-					, const double c
-					, const double alpha
-					, const double beta
-					, const double x0
-					, const double y0)
+Vector *create_vector(const float a
+					, const float b
+					, const float c
+					, const float alpha
+					, const float beta
+					, const float x0
+					, const float y0)
 {
 	Vector *vector = malloc(sizeof(Vector));
 
@@ -44,9 +44,9 @@ Vector *create_vector(const double a
 }
 
 Interval *create_interval(const int steps
-						, const double distance
+						, const float distance
 						, const int points
-						, const double h)
+						, const float h)
 {
 	Interval *interval = malloc(sizeof(Interval));
 
@@ -59,37 +59,37 @@ Interval *create_interval(const int steps
 }
 
 
-const double get_a(const Vector *vector)
+const float get_a(const Vector *vector)
 {
 	return vector->a;
 }
 
-const double get_b(const Vector *vector)
+const float get_b(const Vector *vector)
 {
 	return vector->b;
 }
 
-const double get_c(const Vector *vector)
+const float get_c(const Vector *vector)
 {
 	return vector->c;
 }
 
-const double get_alpha(const Vector *vector)
+const float get_alpha(const Vector *vector)
 {
 	return vector->alpha;
 }
 
-const double get_beta(const Vector *vector)
+const float get_beta(const Vector *vector)
 {
 	return vector->beta;
 }
 
-const double get_x0(const Vector *vector)
+const float get_x0(const Vector *vector)
 {
 	return vector->x0;
 }
 
-const double get_y0(const Vector *vector)
+const float get_y0(const Vector *vector)
 {
 	return vector->y0;
 }
@@ -100,7 +100,7 @@ const int get_steps(const Interval *interval)
 	return interval->steps;
 }
 
-const double get_distance(const Interval *interval)
+const float get_distance(const Interval *interval)
 {
 	return interval->distance;
 }
@@ -110,43 +110,43 @@ const int get_points(const Interval *interval)
 	return interval->points;
 }
 
-const double get_h(const Interval *interval)
+const float get_h(const Interval *interval)
 {
 	return interval->h;
 }
 
 
-void set_a(Vector *vector, const double a)
+void set_a(Vector *vector, const float a)
 {
 	vector->a = a;
 }
 
-void set_b(Vector *vector, const double b)
+void set_b(Vector *vector, const float b)
 {
 	vector->b = b;
 }
 
-void set_c(Vector *vector, const double c)
+void set_c(Vector *vector, const float c)
 {
 	vector->c = c;
 }
 
-void set_alpha(Vector *vector, const double alpha)
+void set_alpha(Vector *vector, const float alpha)
 {
 	vector->alpha = alpha;
 }
 
-void set_beta(Vector *vector, const double beta)
+void set_beta(Vector *vector, const float beta)
 {
 	vector->beta = beta;
 }
 
-void set_x0(Vector *vector, const double x0)
+void set_x0(Vector *vector, const float x0)
 {
 	vector->x0 = x0;
 }
 
-void set_y0(Vector *vector, const double y0)
+void set_y0(Vector *vector, const float y0)
 {
 	vector->y0 = y0;
 }
@@ -157,7 +157,7 @@ void set_steps(Interval *interval, const int steps)
 	interval->steps = steps;
 }
 
-void set_distance(Interval *interval, const double distance)
+void set_distance(Interval *interval, const float distance)
 {
 	interval->distance = distance;
 }
@@ -167,7 +167,7 @@ void set_points(Interval *interval, const int points)
 	interval->points = points;
 }
 
-void set_h(Interval *interval, const double h)
+void set_h(Interval *interval, const float h)
 {
 	interval->h = h;
 }

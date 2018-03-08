@@ -6,7 +6,17 @@
 
 void start(char *input, char *output)
 {
+	FILE *file;
+	file = fopen(input, "r");
+	char str[256] = {'\0'};
 
+	while (!feof(file))
+	{
+		fgets(str, 256, file);
+		printf("%s", str);
+	}
+
+	fclose(file);
 }
 
 int main(int argc, const char **argv)
@@ -25,7 +35,7 @@ int main(int argc, const char **argv)
 
 	if(access(input, F_OK) == -1)
 	{
-		printf("File doesn't exist!");
+		printf("File doesn't exist!\n");
 		return -1;
 	}
 
