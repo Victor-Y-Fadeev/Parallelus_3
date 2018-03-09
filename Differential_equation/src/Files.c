@@ -33,6 +33,23 @@ Saver *create_saver(const char *output)
 }
 
 
+int check_eof(Loader *loader)
+{
+	if (loader->input == NULL)
+	{
+		return -1;
+	}
+
+	if (feof(loader->input) != 0)
+	{
+		fclose(loader->input);
+		loader->input = NULL;
+		return -1;
+	}
+
+	return 0;
+}
+
 Vector *load_vector(Loader *loader)
 {
 	if (check_eof(loader) != 0)
@@ -45,8 +62,8 @@ Vector *load_vector(Loader *loader)
 	float c = 0;
 	float alpha = 0;
 	float beta = 0;
-	float x0 = 0;
-	float y0 = 0;
+	float x = 0;
+	float y = 0;
 
 	fscanf(loader->input
 		, "%e%e%e%e%e%e%e"
@@ -55,10 +72,10 @@ Vector *load_vector(Loader *loader)
 		, &c
 		, &alpha
 		, &beta
-		, &x0
-		, &y0);
+		, &x
+		, &y);
 
-	return create_vector(a, b, c, alpha, beta, x0, y0);
+	return create_vector(a, b, c, alpha, beta, x, y);
 }
 
 Interval *load_interval(Loader *loader)
@@ -83,19 +100,65 @@ Interval *load_interval(Loader *loader)
 	return create_interval(steps, distance, points, h);
 }
 
-int check_eof(Loader *loader)
+int reload_vector(Loader *loader, Vector *vector)
 {
-	if (loader->input == NULL)
+	if (check_eof(loader) != 0)
 	{
-		return 1;
+		return -1;
 	}
 
-	if (feof(loader->input) != 0)
+	float a = 0;
+	float b = 0;
+	float c = 0;
+	float alpha = 0;
+	float beta = 0;
+	float x = 0;
+	float y = 0;
+
+	fscanf(loader->input
+		, "%e%e%e%e%e%e%e"
+		, &a
+		, &b
+		, &c
+		, &alpha
+		, &beta
+		, &x
+		, &y);
+
+	set_a(vector, a);
+	set_b(vector, b);
+	set_c(vector, c);
+	set_alpha(vector, alpha);
+	set_beta(vector, beta);
+	set_x(vector, x);
+	set_y(vector, y);
+
+	return 0;
+}
+
+int reload_interval(Loader *loader, Interval *interval)
+{
+	if (check_eof(loader) != 0)
 	{
-		fclose(loader->input);
-		loader->input = NULL;
-		return 1;
+		return -1;
 	}
+
+	int steps = 0;
+	float distance = 0;
+	int points = 0;
+	float h = 0;
+
+	fscanf(loader->input
+		, "%d%e%d%e"
+		, &steps
+		, &distance
+		, &points
+		, &h);
+
+	set_steps(interval, steps);
+	set_distance(interval, distance);
+	set_points(interval, points);
+	set_h(interval, h);
 
 	return 0;
 }

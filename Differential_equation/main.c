@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "include/Logic.h"
-#include "include/Files.h"
 
 
 void start(char *input, char *output)
@@ -15,7 +14,7 @@ void start(char *input, char *output)
 	delete_saver(saver);
 }
 
-int main(int argc, const char **argv)
+int main(const int argc, const char **argv)
 {
 	char *input = NULL;
 	char *output = NULL;
