@@ -9,9 +9,7 @@ void start(char *input, char *output)
 	Loader *loader = create_loader(input);
 	Saver *saver = create_saver(output);
 
-	Logic *logic = create_logic(loader, saver);
-	auto_computation(logic);
-	delete_logic(logic);
+	auto_computation(loader, saver);
 
 	delete_loader(loader);
 	delete_saver(saver);

@@ -4,79 +4,72 @@
 #include "../include/Files.h"
 
 
-typedef struct Logic
+void auto_computation(Loader *loader, Saver *saver)
 {
-	Loader *loader;
-	Saver *saver;
+	Vector *vector = NULL;
+	Interval *interval = NULL;
 
-	Vector *vector;
-	Interval *interval;
-} Logic;
-
-
-Logic *create_logic(const Loader *loader, const Saver *saver)
-{
-	Logic *logic = malloc(sizeof(Logic));
-
-	logic->loader = loader;
-	logic->saver = saver;
-
-	logic->vector = NULL;
-	logic->interval = NULL;
-
-	return logic;
-}
-
-
-void auto_computation(Logic *logic)
-{
-	logic->vector = load_vector(logic->loader);
-	logic->interval = load_interval(logic->loader);
-
-	if ((logic->vector == NULL) || (logic->interval == NULL))
+	while (1)
 	{
-		return;
-	}
+		vector = load_vector(loader);
+		interval = load_interval(loader);
 
-	if (solve_equation(logic) != 0)
-	{
-		save_vector(logic->saver, logic->vector);
-		save_interval(logic->loader, logic->interval);
+		if ((vector == NULL) || (interval == NULL))
+		{
+			return;
+		}
+
+		if (solve_equation(vector, interval) != 0)
+		{
+			save_vector(saver, vector);
+			save_interval(saver, interval);
+		}
+
+		delete_vector(vector);
+		delete_interval(interval);
 	}
 }
 
-int solve_equation(Logic *logic)
+int solve_equation(Vector *vector, Interval *interval)
 {
+	const int steps = get_steps(interval);
+	const float distance = get_distance(interval);
+
+	for (int i = 0; i < steps; i++)
+	{
+		attractor_course(vector, interval);
+		set_x(vector, get_x(vector) + distance);
+	}
+
+	return 0;
+}
+
+int attractor_course(Vector *vector, Interval *interval)
+{
+
 
 }
 
 
-void delete_logic(Logic *logic)
-{
-	delete_vector(logic->vector);
-	delete_interval(logic->interval);
 
-	free(logic);
-}
-
-
-double phi(const double x, const double y)
+const float phi(const float x, const float y)
 {
 	return x * x + x * y + x;
 }
 
-double psi(const double x, const double y, Vector *vector)
+const float psi(Vector *vector, const float x, const float y)
 {
-	double a = get_a(vector);
-	double b = get_b(vector);
-	double c = get_c(vector);
-	double alpha = get_alpha(vector);
-	double beta = get_beta(vector);
+	const float a = get_a(vector);
+	const float b = get_b(vector);
+	const float c = get_c(vector);
+	const float alpha = get_alpha(vector);
+	const float beta = get_beta(vector);
+
 	return a * x * x + b * x * y + c * y * y + alpha * x + beta * y;
 }
 
 // return: quantity of strange attractors, -1 attractor error, 1 if cycle was found
-int solve_equation(Vector *vector, Interval *interval)
+int solve_equation_old(Vector *vector, Interval *interval)
 {
 	double x0 = get_x(vector);
 	double y0 = get_y(vector);
