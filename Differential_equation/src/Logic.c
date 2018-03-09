@@ -1,5 +1,63 @@
 #include "../include/Logic.h"
+#include <stdlib.h>
 #include "../include/Structures.h"
+#include "../include/Files.h"
+
+
+typedef struct Logic
+{
+	Loader *loader;
+	Saver *saver;
+
+	Vector *vector;
+	Interval *interval;
+} Logic;
+
+
+Logic *create_logic(const Loader *loader, const Saver *saver)
+{
+	Logic *logic = malloc(sizeof(Logic));
+
+	logic->loader = loader;
+	logic->saver = saver;
+
+	logic->vector = NULL;
+	logic->interval = NULL;
+
+	return logic;
+}
+
+
+void auto_computation(Logic *logic)
+{
+	logic->vector = load_vector(logic->loader);
+	logic->interval = load_interval(logic->loader);
+
+	if ((logic->vector == NULL) || (logic->interval == NULL))
+	{
+		return;
+	}
+
+	if (solve_equation(logic) != 0)
+	{
+		save_vector(logic->saver, logic->vector);
+		save_interval(logic->loader, logic->interval);
+	}
+}
+
+int solve_equation(Logic *logic)
+{
+
+}
+
+
+void delete_logic(Logic *logic)
+{
+	delete_vector(logic->vector);
+	delete_interval(logic->interval);
+
+	free(logic);
+}
 
 
 double phi(const double x, const double y)
@@ -18,10 +76,10 @@ double psi(const double x, const double y, Vector *vector)
 }
 
 // return: quantity of strange attractors, -1 attractor error, 1 if cycle was found
-int solve_equation(Vector *vector, const Interval *interval)
+int solve_equation(Vector *vector, Interval *interval)
 {
-	double x0 = get_x0(vector);
-	double y0 = get_y0(vector);
+	double x0 = get_x(vector);
+	double y0 = get_y(vector);
 	double h = get_h(interval);
 
 	int quantity_of_points = get_points(interval); // >= 9000

@@ -9,8 +9,8 @@ typedef struct Vector
 	float c;
 	float alpha;
 	float beta;
-	float x0;
-	float y0;
+	float x;
+	float y;
 } Vector;
 
 typedef struct Interval
@@ -27,8 +27,8 @@ Vector *create_vector(const float a
 					, const float c
 					, const float alpha
 					, const float beta
-					, const float x0
-					, const float y0)
+					, const float x
+					, const float y)
 {
 	Vector *vector = malloc(sizeof(Vector));
 
@@ -37,8 +37,8 @@ Vector *create_vector(const float a
 	vector->c = c;
 	vector->alpha = alpha;
 	vector->beta = beta;
-	vector->x0 = x0;
-	vector->y0 = y0;
+	vector->x = x;
+	vector->y = y;
 
 	return vector;
 }
@@ -84,14 +84,14 @@ const float get_beta(const Vector *vector)
 	return vector->beta;
 }
 
-const float get_x0(const Vector *vector)
+const float get_x(const Vector *vector)
 {
-	return vector->x0;
+	return vector->x;
 }
 
-const float get_y0(const Vector *vector)
+const float get_y(const Vector *vector)
 {
-	return vector->y0;
+	return vector->y;
 }
 
 
@@ -141,14 +141,14 @@ void set_beta(Vector *vector, const float beta)
 	vector->beta = beta;
 }
 
-void set_x0(Vector *vector, const float x0)
+void set_x(Vector *vector, const float x)
 {
-	vector->x0 = x0;
+	vector->x = x;
 }
 
-void set_y0(Vector *vector, const float y0)
+void set_y(Vector *vector, const float y)
 {
-	vector->y0 = y0;
+	vector->y = y;
 }
 
 

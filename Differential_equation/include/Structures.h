@@ -9,8 +9,8 @@ Vector *create_vector(const float a
 					, const float c
 					, const float alpha
 					, const float beta
-					, const float x0
-					, const float y0);
+					, const float x
+					, const float y);
 
 Interval *create_interval(const int steps
 						, const float distance
@@ -22,8 +22,8 @@ const float get_b(const Vector *vector);
 const float get_c(const Vector *vector);
 const float get_alpha(const Vector *vector);
 const float get_beta(const Vector *vector);
-const float get_x0(const Vector *vector);
-const float get_y0(const Vector *vector);
+const float get_x(const Vector *vector);
+const float get_y(const Vector *vector);
 
 const int get_steps(const Interval *interval);
 const float get_distance(const Interval *interval);
@@ -35,8 +35,8 @@ void set_b(Vector *vector, const float b);
 void set_c(Vector *vector, const float c);
 void set_alpha(Vector *vector, const float alpha);
 void set_beta(Vector *vector, const float beta);
-void set_x0(Vector *vector, const float x0);
-void set_y0(Vector *vector, const float y0);
+void set_x(Vector *vector, const float x);
+void set_y(Vector *vector, const float y);
 
 void set_steps(Interval *interval, const int steps);
 void set_distance(Interval *interval, const float distance);

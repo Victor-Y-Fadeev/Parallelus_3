@@ -1,10 +1,12 @@
 #pragma once
 
-#include "Structures.h"
+#include "Files.h"
 
 
-double phi(const double x, const double y);
+typedef struct Logic Logic;
 
-double psi(const double x, const double y, Vector *vector);
+Logic *create_logic(const Loader *loader, const Saver *saver);
 
-int solve_equation(Vector *vector, const Interval *interval);
+void auto_computation(Logic *logic);
+
+void delete_logic(Logic *logic);

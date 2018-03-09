@@ -110,8 +110,8 @@ void save_vector(Saver *saver, const Vector *vector)
 		, get_c(vector)
 		, get_alpha(vector)
 		, get_beta(vector)
-		, get_x0(vector)
-		, get_y0(vector));
+		, get_x(vector)
+		, get_y(vector));
 }
 
 void save_interval(Saver *saver, const Interval *interval)

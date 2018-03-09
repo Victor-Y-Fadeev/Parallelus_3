@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "include/Files.h"
 #include "include/Logic.h"
+#include "include/Files.h"
 
 
 void start(char *input, char *output)
@@ -9,6 +9,9 @@ void start(char *input, char *output)
 	Loader *loader = create_loader(input);
 	Saver *saver = create_saver(output);
 
+	Logic *logic = create_logic(loader, saver);
+	auto_computation(logic);
+	delete_logic(logic);
 
 	delete_loader(loader);
 	delete_saver(saver);
