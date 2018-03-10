@@ -41,15 +41,16 @@ int solve_equation(Vector *vector, Interval *interval)
 
 	float x = get_x(vector);
 	int attractors = 0;
-	int prev = attractor_course(vector, interval);
+	int prev = 0;
 
-	for (int i = 1; i < steps; ++i)
+	for (int i = 0; i < steps; ++i)
 	{
+		const int next = attractor_course(vector, interval);
+
 		x += distance;
+
 		set_y(vector, y);
 		set_x(vector, x);
-
-		const int next = attractor_course(vector, interval);
 
 		if ((prev == 1) && (next == -1))
 		{
@@ -119,9 +120,9 @@ void solution(Vector *vector, const float t, const float h)
 	const float k14 = h * fi(x + k13, y + k23);
 	const float k24 = h * psi(vector, x + k13, y + k23);
 
-	const float x_next = x + (k11 + k12 + k13 + k14) / 6;
-	const float y_next = y + (k21 + k22 + k23 + k24) / 6;
+	const float next_x = x + (k11 + k12 + k13 + k14) / 6;
+	const float next_y = y + (k21 + k22 + k23 + k24) / 6;
 
-	set_x(vector, x_next);
-	set_y(vector, y_next);
+	set_x(vector, next_x);
+	set_y(vector, next_y);
 }

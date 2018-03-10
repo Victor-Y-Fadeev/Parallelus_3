@@ -9,6 +9,7 @@ typedef struct Vector
 	float c;
 	float alpha;
 	float beta;
+
 	float x;
 	float y;
 } Vector;
@@ -17,6 +18,7 @@ typedef struct Interval
 {
 	int steps;
 	float distance;
+
 	int points;
 	float h;
 } Interval;
