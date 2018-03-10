@@ -31,7 +31,6 @@ namespace Visualization
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Draw = new System.Windows.Forms.Button();
 			this.zedGraph = new ZedGraph.ZedGraphControl ();
 			this.SuspendLayout();
 			//
@@ -54,18 +53,6 @@ namespace Visualization
 			this.zedGraph.TabIndex = 0;
 			
 			// 
-			// Draw
-			// 
-			this.Draw.BackColor = System.Drawing.Color.LightBlue;
-			//this.Draw.ForeColor = System.Drawing.Color.Black;
-			this.Draw.Location = new System.Drawing.Point(10, 10);
-			this.Draw.Name = "Draw";
-			this.Draw.Size = new System.Drawing.Size(75, 23);
-			this.Draw.TabIndex = 4;
-			this.Draw.Text = "Draw";
-			this.Draw.UseVisualStyleBackColor = false;
-			this.Draw.Click += new System.EventHandler(this.Draw_Click);
-			// 
 			// EditorForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -81,7 +68,6 @@ namespace Visualization
 			this.ResumeLayout(false);
 		}
 
-		private System.Windows.Forms.Button Draw;
 		private ZedGraph.ZedGraphControl zedGraph;
 	}
 }

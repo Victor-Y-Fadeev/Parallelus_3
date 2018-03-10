@@ -31,13 +31,6 @@ namespace Visualization
 			drawer.DrawGraph(list, "pisya");
 		}
 		
-		private void Draw_Click(object sender, EventArgs e)
-		{
-			
-			var zedGraph = new ZedGraph.GraphPane();
-			GraphPane pane = new ZedGraph.GraphPane();
-		}
-		
 		private double f (double x)
 		{
 			if (x == 0)
