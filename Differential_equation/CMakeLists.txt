@@ -5,8 +5,10 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(Differential_equation main.c
                 include/Structures.h
+                include/Analysis.h
                 include/Logic.h
                 include/Files.h
                 src/Structures.c
+                src/Analysis.c
                 src/Logic.c
                 src/Files.c)

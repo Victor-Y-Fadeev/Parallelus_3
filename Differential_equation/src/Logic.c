@@ -1,5 +1,8 @@
 #include "../include/Logic.h"
 #include <stdlib.h>
+#include "../include/Analysis.h"
+
+#define STRANGE_ATTRACTORS 3
 
 
 void auto_computation(Loader *loader, Saver *saver)
@@ -14,7 +17,7 @@ void auto_computation(Loader *loader, Saver *saver)
 
 	while (1)
 	{
-		if (solve_equation(vector, interval) == 0)
+		if (solve_equation(vector, interval) >= STRANGE_ATTRACTORS)
 		{
 			save_vector(saver, vector);
 			save_interval(saver, interval);
@@ -37,20 +40,26 @@ int solve_equation(Vector *vector, Interval *interval)
 	const float y = get_y(vector);
 
 	float x = get_x(vector);
+	int attractors = 0;
+	int prev = attractor_course(vector, interval);
 
-	for (int i = 0; i < steps; ++i)
+	for (int i = 1; i < steps; ++i)
 	{
-		attractor_course(vector, interval);
-
-		// To do something with +1, -1
-
 		x += distance;
-
 		set_y(vector, y);
 		set_x(vector, x);
+
+		const int next = attractor_course(vector, interval);
+
+		if ((prev == 1) && (next == -1))
+		{
+			attractors++;
+		}
+
+		prev = next;
 	}
 
-	return 0;
+	return attractors;
 }
 
 int attractor_course(Vector *vector, Interval *interval)
@@ -58,18 +67,23 @@ int attractor_course(Vector *vector, Interval *interval)
 	const int points = get_points(interval);
 	const float h = get_h(interval);
 
+	Analyser *analyser = create_analyser(get_x(vector), get_y(vector));
 	float t = 0;
 
 	for (int i = 0; i < points; ++i)
 	{
 		solution(vector, t, h);
 
-		// To do something with x0, y0, x1, y1
+		send_points(analyser, get_x(vector), get_y(vector));
 
 		t += h;
 	}
 
-	return 0;
+	const int course = receive_course(analyser);
+
+	delete_analyser(analyser);
+
+	return course;
 }
 
 const float fi(const float x, const float y)
