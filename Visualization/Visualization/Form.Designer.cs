@@ -46,10 +46,6 @@ namespace Visualization
 			this.zedGraph.ScrollMinX = 0;
 			this.zedGraph.ScrollMinY = 0;
 			this.zedGraph.ScrollMinY2 = 0;
-			/*
-			this.zedGraph.Size = new System.Drawing.Size(SystemInformation.PrimaryMonitorSize.Width - 2 * Indenting,
-				SystemInformation.PrimaryMonitorSize.Height - 2 * Indenting);
-			*/
 			this.zedGraph.TabIndex = 0;
 			
 			// 
@@ -62,7 +58,6 @@ namespace Visualization
 			this.DoubleBuffered = true;
 			this.Name = "EditorForm";
 			this.Text = "Visualization";
-			this.Controls.Add(Draw);
 			this.Controls.Add (this.zedGraph);
 			this.WindowState = FormWindowState.Maximized;
 			this.ResumeLayout(false);
