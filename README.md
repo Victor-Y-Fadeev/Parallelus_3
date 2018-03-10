@@ -4,4 +4,4 @@
 This project is devoted to the parallelization of the problem of finding strange attractors.
 
 Subprojects:
-- [Differential Equation](https://github.com/Victor-Y-Fadeev/Parallelus_3/tree/master/Differential_Equation)
+- [Differential equation](https://github.com/Victor-Y-Fadeev/Parallelus_3/tree/master/Differential_equation)
