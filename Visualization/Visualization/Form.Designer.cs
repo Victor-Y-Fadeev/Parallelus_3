@@ -25,10 +25,7 @@ namespace Visualization
 			base.Dispose(disposing);
 		}
 		
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
+		
 		private void InitializeComponent()
 		{
 			this.zedGraph = new ZedGraph.ZedGraphControl ();
@@ -47,14 +44,12 @@ namespace Visualization
 			this.zedGraph.ScrollMinY = 0;
 			this.zedGraph.ScrollMinY2 = 0;
 			this.zedGraph.TabIndex = 0;
-			
 			// 
 			// EditorForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			//this.ClientSize = new System.Drawing.Size(500, 500);
 			this.DoubleBuffered = true;
 			this.Name = "EditorForm";
 			this.Text = "Visualization";

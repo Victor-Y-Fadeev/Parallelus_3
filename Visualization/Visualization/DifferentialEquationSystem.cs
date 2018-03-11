@@ -42,8 +42,8 @@ namespace Visualization
 			var k14 = h * Fi(x + k13, y + k23);
 			var k24 = h * Psi(x + k13, y + k23);
 
-			var nextX = x + (k11 + k12 + k13 + k14) / 6;
-			var nextY = y + (k21 + k22 + k23 + k24) / 6;
+			var nextX = x + (k11 + 2 * k12 + 2 * k13 + k14) / 6;
+			var nextY = y + (k21 + 2 * k22 + 2 * k23 + k24) / 6;
 
 			SetNewCurrentPoint(nextX, nextY);
 
