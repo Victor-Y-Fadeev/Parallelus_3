@@ -27,5 +27,11 @@ namespace Visualization
 			_zedGraph.AxisChange ();
 			_zedGraph.Invalidate ();
 		}
+
+		public void DrawEquation(DifferentialEquationSystem diff)
+		{
+			diff.SetNewInitialData(1.6, 0);
+			DrawGraph(diff.GetPointPairList(0.001, 9000), "(1,0)");
+		}
 	}
 }

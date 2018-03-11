@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Visualization
 {
-	internal partial class EditorForm : Form
+	internal partial class EditorForm
 	{
 		private const int Indenting = 100;
 		
