@@ -63,8 +63,8 @@ compile_commands.json
 CTestTestfile.cmake
 
 # CLion
-.idea/
 !misc.xml
 !modules.xml
+.idea/
 cmake-build-debug/
 cmake-build-release/
