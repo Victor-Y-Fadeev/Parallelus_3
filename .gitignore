@@ -69,5 +69,5 @@ cmake-build-debug/
 cmake-build-release/
 
 # C#
-obj/
-Obj/
+/**/obj/
+/**/Obj/
