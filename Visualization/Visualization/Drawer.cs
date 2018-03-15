@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using ZedGraph;
 
 namespace Visualization
@@ -23,15 +24,20 @@ namespace Visualization
 		public void DrawGraph(PointPairList list, string graphName)
 		{
 			var pane = GraphicInit();
-			LineItem myCurve = pane.AddCurve (graphName, list, Color.Blue, SymbolType.None);
+			Random rand = new Random();
+			LineItem myCurve = pane.AddCurve (graphName, list, Color.FromArgb(10+rand.Next(245),10+rand.Next(245),10+rand.Next(245),10+rand.Next(245)), SymbolType.None);
 			_zedGraph.AxisChange ();
 			_zedGraph.Invalidate ();
 		}
 
 		public void DrawEquation(DifferentialEquationSystem diff)
 		{
-			diff.SetNewInitialData(1.6, 0);
-			DrawGraph(diff.GetPointPairList(0.001, 9000), "(1,0)");
+			for (int i = 0; i < 30; i++)
+			{
+				diff.SetNewInitialData(-1.4 + i*0.6, 0); 
+				DrawGraph(diff.GetPointPairList(0.001, 9000), "(1,0)"); 
+			}
+
 		}
 	}
 }
