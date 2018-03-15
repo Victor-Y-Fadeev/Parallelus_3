@@ -30,7 +30,7 @@ namespace Visualization
 
 		private PointPair NextPoint (double x, double y, double h)
 		{
-			var k11 = h * Fi(x, y);
+			var k11 = h * Fi(x, y); 
 			var k21 = h * Psi(x, y);
 
 			var k12 = h * Fi(x + k11 / 2, y + k21 / 2);
@@ -62,7 +62,7 @@ namespace Visualization
 			_currentPoints.Y = y;
 		}
 
-		private static double Fi(double x, double y) => x * x + x * y + x;
+		private static double Fi(double x, double y) => x * x + x * y + y;
 
 		private double Psi(double x, double y)
 		{
