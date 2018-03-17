@@ -70,74 +70,25 @@ int attractor_course(Vector *vector, Interval *interval)
 	const int points = get_points(interval);
 	const float h = get_h(interval);
 
-	//Analyser *analyser = create_analyser(get_x(vector), get_y(vector));
-	const float x0 = get_x(vector);
-	const float y0 = get_y(vector);
-	float last_x = x0;
-	float last_y = y0;
-	float x;
-	float y;
-	int flag = 0;
-	float first_max = -1.0;
-	float max = -1.0;
-	int arrow = 0;
+
+	Analyser *analyser = create_analyser(get_x(vector), get_y(vector));
+	set_point0 (analyser, get_x(vector), get_y(vector));
 
 	for (int i = 0; i < points; ++i)
 	{
- 		solution(vector, h);
+		solution(vector, h);
 
-		x = get_x(vector);
-	 	y = get_y(vector);
-
- 		//send_points(analyser, get_x(vector), get_y(vector));
-
-		if (last_y*y<= 0) 
-		{
-			if (flag == 0 )
-			{
-				flag++;
-			}
-			else
-			{
-				flag =0;
-				period ++;
-			}
-		}
-
-		if (period == 0 && L(x0,y0,x,y) > first_max ) 
-		{
-			first_max = L(x0,y0,x,y);
-		}
- 
-		if (period == Cperiod && L(x0,y0,x,y) > max ) 
-		{
-			max = L(x0,y0,x,y);
-		} 
-
-		last_x = x;
-		last_y = y;
+		max_distanse(analyser, get_x(vector), get_y(vector));
 	}
 
-	if (max > first_max)
-	{
-		arrow = 1; 
-	}
-	else
-	{
-	arrow = -1;
-	}
 
- //const int course = receive_course(analyser);
+     const int arrow = receive_arrow (analyser);
 
- //delete_analyser(analyser);
+    delete_analyser(analyser);
 
  return arrow;
 }
 
-float L(const float x0, const float y0, float x,float y)
-{
-	return (x0-x)*(x0-x)+(y0-y)(y0-y);
-}
 
 const float fi(const float x, const float y)
 {

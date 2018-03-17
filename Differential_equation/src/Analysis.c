@@ -1,149 +1,138 @@
 #include "../include/Analysis.h"
 #include <stdlib.h>
 
+#define Cperiod 5
 
 typedef struct Analyser
 {
+	float x0;
+	float y0;
+
 	float x;
 	float y;
+	float last_y;
 
-	float prev_tangent_x;
-	float prev_tangent_y;
+	int period;
+	int halfperiod;
 
-	float next_tangent_x;
-	float next_tangent_y;
-
-	int clockwise;
-	int counterclockwise;
-
-	int flag;
+	float first_max ;
+	float max ;
 } Analyser;
 
 
-Analyser *create_analyser(const float x, const float y)
+Analyser *create_analyser()
 {
 	Analyser *analyser = malloc(sizeof(Analyser));
 
-	analyser->x = x;
-	analyser->y = y;
+	analyser->x = 0;
+	analyser->y = 0;
+	analyser->last_y=0;
 
-	analyser->prev_tangent_x = 0;
-	analyser->prev_tangent_y = 0;
+	analyser->x0 = 0;
+	analyser->y0 = 0;
 
-	analyser->next_tangent_x = 0;
-	analyser->next_tangent_y = 0;
+	analyser->period = 0;
+	analyser->halfperiod = 0;
 
-	analyser->clockwise = 0;
-	analyser->counterclockwise = 0;
-
-	analyser->flag = 0;
+	analyser->first_max = 0;
+	analyser->max = 0;
 
 	return analyser;
 }
 
-
-int quarter_number(const float x, const float y)
+void set_point0(Analyser *analyser, const float x0, const float y0)
 {
-	if ((x >= 0) && (y >= 0))
-	{
-		return 1;
-	}
+	analyser->x0 = x0;
+	analyser->y0 = y0;
 
-	if ((x < 0) && (y >= 0))
-	{
-		return 2;
-	}
-
-	if ((x < 0) && (y < 0))
-	{
-		return 3;
-	}
-
-	return 4;
+	return;
 }
 
-void update_statistics(Analyser *analyser)
+void set_point(Analyser *analyser, const float x, const float y)
 {
-	const float prev_x = analyser->prev_tangent_x;
-	const float prev_y = analyser->prev_tangent_y;
-	const float next_x = analyser->next_tangent_x;
-	const float next_y = analyser->next_tangent_y;
+	analyser->last_y = analyser ->y;
 
-	const int prev = quarter_number(prev_x, prev_y);
-	const int next = quarter_number(next_x, next_y);
+	analyser->x0 = x;
+	analyser->y0 = y;
 
-	if ((next - prev == -1) || (next - prev == 3))
-	{
-		analyser->clockwise++;
-	}
-
-	if ((next - prev == 1) || (next - prev == -3))
-	{
-		analyser->counterclockwise++;
-	}
+	return;
 }
 
-void send_points(Analyser *analyser, const float x, const float y)
+void chec_period (Analyser *analyser)
 {
-	switch (analyser->flag)
+	if (analyser->last_y * analyser->y <= 0)
 	{
-		case 0:
+		if (analyser->halfperiod  == 0 )
 		{
-			analyser->prev_tangent_x = x - analyser->x;
-			analyser->prev_tangent_y = y - analyser->y;
-
-			analyser->x = x;
-			analyser->y = y;
-
-			analyser->flag++;
-			break;
+			analyser->halfperiod = 1;
 		}
-		case 1:
+		else
 		{
-			analyser->next_tangent_x = x - analyser->x;
-			analyser->next_tangent_y = y - analyser->y;
-
-			analyser->x = x;
-			analyser->y = y;
-
-			analyser->flag++;
-			update_statistics(analyser);
-			break;
-		}
-		default:
-		{
-			analyser->prev_tangent_x = analyser->next_tangent_x;
-			analyser->prev_tangent_y = analyser->next_tangent_y;
-
-			analyser->next_tangent_x = x - analyser->x;
-			analyser->next_tangent_y = y - analyser->y;
-
-			analyser->x = x;
-			analyser->y = y;
-
-			update_statistics(analyser);
-			break;
+			analyser->halfperiod =0;
+			analyser->period++;
 		}
 	}
+
+	return;
 }
 
-int receive_course(Analyser *analyser)
+float distanse(const float x0, const float y0, const float x, const float y)
 {
-	if (analyser->clockwise > analyser->counterclockwise)
-	{
-		return 1;
-	}
-
-	if (analyser->clockwise < analyser->counterclockwise)
-	{
-		return -1;
-	}
-
-	return 0;
+	return (x0-x)*(x0-x)+(y0-y)*(y0-y);
 }
 
+void chec_firstmax(Analyser *analyser)
+{
+	if(distanse(analyser->x0, analyser->y0, analyser->x, analyser->y) > analyser->first_max)
+	{
+		analyser->first_max = distanse(analyser->x0, analyser->y0, analyser->x, analyser->y);
+	}
+
+	return;
+}
+
+void chec_max(Analyser *analyser)
+{
+	if(distanse(analyser->x0, analyser->y0, analyser->x, analyser->y) > analyser->max)
+	{
+		analyser->max = distanse(analyser->x0, analyser->y0, analyser->x, analyser->y);
+	}
+
+	return;
+}
+
+void max_distanse(Analyser *analyser, const float x, const float y)
+{
+	set_point(analyser, x, y);
+
+	chec_period (analyser);
+
+	if (analyser->period == 0)
+	{
+		chec_max(analyser);
+	}
+	if (analyser->period == Cperiod)
+	{
+		chec_firstmax(analyser);
+	}
+
+    return;
+}
+
+int receive_arrow (Analyser*analyser)
+{
+    if (analyser->max > analyser->first_max)
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+}
 
 void delete_analyser(Analyser *analyser)
 {
-	free(analyser);
+    free(analyser);
 }
+
