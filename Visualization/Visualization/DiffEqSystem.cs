@@ -2,13 +2,13 @@
 
 namespace Visualization
 {
-	internal class DifferentialEquationSystem
+	internal class DiffEqSystem
 	{
 		private Vector _vector;
 		private InitialData _initialData;
 		private CurrentPoints _currentPoints;
-		
-		public DifferentialEquationSystem(double a, double b, double c, double alpha, double beta)
+
+		public DiffEqSystem(double a, double b, double c, double alpha, double beta)
 		{
 			_vector = new Vector(a, b, c, alpha, beta);
 		}
@@ -28,9 +28,9 @@ namespace Visualization
 			return list;
 		}
 
-		private PointPair NextPoint (double x, double y, double h)
+		private PointPair NextPoint(double x, double y, double h)
 		{
-			var k11 = h * Fi(x, y); 
+			var k11 = h * Fi(x, y);
 			var k21 = h * Psi(x, y);
 
 			var k12 = h * Fi(x + k11 / 2, y + k21 / 2);
@@ -74,7 +74,7 @@ namespace Visualization
 
 			return a * x * x + b * x * y + c * y * y + alpha * x + beta * y;
 		}
-		
+
 		private struct Vector
 		{
 			public double A { get; }
@@ -92,7 +92,7 @@ namespace Visualization
 				Beta = beta;
 			}
 		}
-		
+
 		private struct InitialData
 		{
 			public InitialData(double a, double b)
@@ -105,7 +105,7 @@ namespace Visualization
 			public double Y { get; set; }
 
 		}
-		
+
 		private struct CurrentPoints
 		{
 			public CurrentPoints(double a, double b)

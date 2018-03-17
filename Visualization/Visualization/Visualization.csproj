@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DifferentialEquationSystem.cs" />
+    <Compile Include="DiffEqSystem.cs" />
     <Compile Include="Drawer.cs" />
     <Compile Include="EditorForm.cs" />
     <Compile Include="Form.Designer.cs" />

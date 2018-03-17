@@ -10,14 +10,29 @@ namespace Visualization
 		public EditorForm()
 		{
 			InitializeComponent();
-			Start();
 		}
 
-		private void Start()
+		private void FileNewItem_Click(object sender, EventArgs e)
 		{
-			var diff = new DifferentialEquationSystem(-10.0, 2.7, 0.4, -437.5, 0.003);
+		}
+
+		private void FileExitItem_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+
+		private void RunRunItem_Click(object sender, EventArgs e)
+		{
+		}
+
+		private void HelpRunExampleItem_Click(object sender, EventArgs e)
+		{
 			var drawer = new Drawer(zedGraph);
-			drawer.DrawEquation(diff);
+			drawer.DrawExample();
+		}
+
+		private void HelpAboutItem_Click(object sender, EventArgs e)
+		{
 		}
 	}
 }
