@@ -13,19 +13,48 @@ namespace Visualization
 			_vector = new Vector(a, b, c, alpha, beta);
 		}
 
-		public PointPairList GetPointPairList(double h, int quantityOfPoints)
+		public Result GetResult(double h, int quantityOfPoints)
 		{
 			var x = _initialData.X;
 			var y = _initialData.Y;
 			var list = new PointPairList {new PointPair(x, y)};
+			var needCheck = true;
+			var yLast = y;
+			var counter = 0;
+			var isToRight = true;
+			
+			if (yLast == 0)
+			{
+				counter = -1;
+			}
 			for (var i = 0; i < quantityOfPoints; i++)
 			{
 				list.Add(NextPoint(x, y, h));
 				x = _currentPoints.X;
 				y = _currentPoints.Y;
+				if (needCheck)
+				{
+					if (y < 0 && yLast >= 0)
+					{
+						yLast = y;
+						counter++;
+					}
+					else if (y > 0 && yLast <= 0)
+					{
+						yLast = y;
+						counter++;
+					}
+
+					if (counter == 2)
+					{
+						needCheck = false;
+						isToRight = x > _initialData.X;
+					}
+				}
 			}
 
-			return list;
+			var result = new Result(list, isToRight);
+			return result;
 		}
 
 		private PointPair NextPoint(double x, double y, double h)
@@ -103,7 +132,6 @@ namespace Visualization
 
 			public double X { get; set; }
 			public double Y { get; set; }
-
 		}
 
 		private struct CurrentPoints
@@ -113,7 +141,6 @@ namespace Visualization
 				X = a;
 				Y = b;
 			}
-
 			public double X { get; set; }
 			public double Y { get; set; }
 		}
