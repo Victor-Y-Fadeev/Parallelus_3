@@ -64,26 +64,21 @@ namespace Visualization
 				const int y1 = 0;
 				diff.SetNewInitialData(x1, y1);
 				var x = -1.4 + i * 0.6;
-				var result = diff.GetResult(0.00001, 900000);
+				var result = diff.GetResult(0.00001, 90000);
 				var arrow = result.IsToRight ? new ArrowObj(x0, y0, x1, y1) : new ArrowObj(x1, y1, x0, y0);
 				DrawGraph(result.GraphicPounts, arrow, "(" + x + ",0)", title);
 				x0 = x1;
 				y0 = y1;
 			}
-			/*
-			var diff = new DiffEqSystem(-10.0, 2.7, 0.4, -437.5, 0.003);
-			const string title = "a = -10.0, b = 2.7, c = 0.4, alpha = -437.5, beta = 0.003";
-			diff.SetNewInitialData(0,0);
-			var result = diff.GetResult(0.00001, 90000);
-			DrawGraph(result.GraphicPounts, new ArrowObj(), "(" + 0 + ",0)", title);
-			*/
 		}
 
 		public void DrawExampleStabilityCycles()
 		{
 			var diff = new DiffEqSystem(-10.0, 2.7, 0.4, -437.5, 0.003);
 			var cycles = diff.FindStabilityCycles(new PointPair(0.1, 0), 10);
-			DrawGraph(cycles.UnStable[0], "111", "lol");
+			DrawGraph(cycles.UnStable[0], "unstable" + cycles.UnStable[0][0], "");
+			DrawGraph(cycles.Stable[1], "stable" + cycles.Stable[1][0], "");
+			DrawGraph(cycles.Stable[0], "stable" + cycles.Stable[0][0], "");
 		}
 	}
 }

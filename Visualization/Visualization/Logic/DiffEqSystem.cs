@@ -73,12 +73,13 @@ namespace Visualization
 			startPoint = point;
 			point = PassFewSemicircle(point, 2);
 			var lastDirection = GetDirection(startPoint.X, point.X);
+			point.X += step;
 			
 			while (point != null && point.X < endOfInterval)
 			{
 				startPoint = point;
 				point = PassFewSemicircle(point, 2);
-				const double accuracy = 0.000001;
+				const double accuracy = 0.001;
 				var newDirection = GetDirection(startPoint.X, point.X);
 				if (newDirection != lastDirection)
 				{
@@ -92,6 +93,7 @@ namespace Visualization
 					}
 				}
 
+				lastDirection = newDirection;
 				point.X += step;
 			}
 
@@ -158,14 +160,14 @@ namespace Visualization
 			return newPoint;
 		}
 
-		private int GetDirection(double a, double b)
+		private int GetDirection(double from, double to)
 		{
-			if (a < b)
+			if (from < to)
 			{
-				return -1;
+				return 1;
 			}
 
-			return a > b ? 1 : 0;
+			return from > to ? -1 : 0;
 		}
 
 		//тут ещё надо сверху ограничить
