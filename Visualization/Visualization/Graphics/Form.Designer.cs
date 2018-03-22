@@ -38,7 +38,8 @@ namespace Visualization
 			fileNewItem = new ToolStripMenuItem("New");
 			fileExitItem = new ToolStripMenuItem("Exit");
 			runRunItem = new ToolStripMenuItem("Run");
-			helpRunExampleItem = new ToolStripMenuItem("Run example");
+			helpRunExampleGraphItem = new ToolStripMenuItem("Run example graphic");
+			helpRunExampleSyclesItem = new ToolStripMenuItem("Run example stability cycles");
 			helpAboutItem = new ToolStripMenuItem("About");
 			this.SuspendLayout();
 			//
@@ -47,6 +48,7 @@ namespace Visualization
 			this.zedGraph.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.zedGraph.Location = new System.Drawing.Point(Indenting, Indenting);
 			this.zedGraph.Name = "zedGraph";
+			this.zedGraph.GraphPane.Title.Text = "Hello. Try click on Help -> Run example.";
 			this.zedGraph.ScrollGrace = 0;
 			this.zedGraph.ScrollMaxX = 0;
 			this.zedGraph.ScrollMaxY = 0;
@@ -61,7 +63,8 @@ namespace Visualization
 			fileNewItem.Click += FileNewItem_Click;
 			fileExitItem.Click += FileExitItem_Click;
 			runRunItem.Click += RunRunItem_Click;
-			helpRunExampleItem.Click += HelpRunExampleItem_Click;
+			helpRunExampleGraphItem.Click += HelpRunExampleGraphItem_Click;
+			helpRunExampleSyclesItem.Click += HelpRunExampleSyclesItem_Click;
 			helpAboutItem.Click += HelpAboutItem_Click;
 
 			this.menu.Items.Add(fileItem);
@@ -73,7 +76,8 @@ namespace Visualization
 
 			this.runItem.DropDownItems.Add(runRunItem);
 
-			this.helpItem.DropDownItems.Add(helpRunExampleItem);
+			this.helpItem.DropDownItems.Add(helpRunExampleGraphItem);
+			this.helpItem.DropDownItems.Add(helpRunExampleSyclesItem);
 			this.helpItem.DropDownItems.Add(helpAboutItem);
 			// 
 			// EditorForm
@@ -102,7 +106,8 @@ namespace Visualization
 
 		private ToolStripMenuItem runRunItem;
 
-		private ToolStripMenuItem helpRunExampleItem;
+		private ToolStripMenuItem helpRunExampleGraphItem;
+		private ToolStripMenuItem helpRunExampleSyclesItem;
 		private ToolStripMenuItem helpAboutItem;
 	}
 }

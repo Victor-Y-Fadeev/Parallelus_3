@@ -36,27 +36,40 @@ namespace Visualization
 
 		public void DrawEquation(DiffEqSystem diff, double x0, double y0)
 		{
-			DrawGraph(diff.GetResult(0.0001, 9000).Pounts, new ArrowObj(), "(" + x0 + "," + y0 + ")", "");
+			DrawGraph(diff.GetResult(0.0001, 9000).GraphicPounts, new ArrowObj(), "(" + x0 + "," + y0 + ")", "");
 		}
 
 		public void DrawExample()
 		{
+			
 			var diff = new DiffEqSystem(-10.0, 2.7, 0.4, -437.5, 0.003);
-			const string vector = "a = -10.0, b = 2.7, c = 0.4, alpha = -437.5, beta = 0.003";
+			const string title = "a = -10.0, b = 2.7, c = 0.4, alpha = -437.5, beta = 0.003";
 			var x0 = -1.4;
 			var y0 = 0;
-			for (var i = 1; i < 20; i++)
+			for (var i = 3; i < 20; i++)
 			{
 				var x1 = -1.4 + i * 0.6;
-				var y1 = 0;
+				const int y1 = 0;
 				diff.SetNewInitialData(x1, y1);
 				var x = -1.4 + i * 0.6;
-				var result = diff.GetResult(0.0001, 90000);
+				var result = diff.GetResult(0.00001, 900000);
 				var arrow = result.IsToRight ? new ArrowObj(x0, y0, x1, y1) : new ArrowObj(x1, y1, x0, y0);
-				DrawGraph(result.Pounts, arrow, "(" + x + ",0)", vector);
+				DrawGraph(result.GraphicPounts, arrow, "(" + x + ",0)", title);
 				x0 = x1;
 				y0 = y1;
 			}
+			/*
+			var diff = new DiffEqSystem(-10.0, 2.7, 0.4, -437.5, 0.003);
+			const string title = "a = -10.0, b = 2.7, c = 0.4, alpha = -437.5, beta = 0.003";
+			diff.SetNewInitialData(0,0);
+			var result = diff.GetResult(0.00001, 90000);
+			DrawGraph(result.GraphicPounts, new ArrowObj(), "(" + 0 + ",0)", title);
+			*/
+		}
+
+		public void DrawExampleStabilityCycles()
+		{
+			
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace Visualization
 
 		private void FileNewItem_Click(object sender, EventArgs e)
 		{
+			MessageBox.Show("Will appear in the next updates. Try help -> Run example.");
 		}
 
 		private void FileExitItem_Click(object sender, EventArgs e)
@@ -23,16 +24,24 @@ namespace Visualization
 
 		private void RunRunItem_Click(object sender, EventArgs e)
 		{
+			MessageBox.Show("Will appear in the next updates. Try help -> Run example.");
 		}
 
-		private void HelpRunExampleItem_Click(object sender, EventArgs e)
+		private void HelpRunExampleGraphItem_Click(object sender, EventArgs e)
 		{
 			var drawer = new Drawer(zedGraph);
 			drawer.DrawExample();
 		}
+		
+		private void HelpRunExampleSyclesItem_Click(object sender, EventArgs e)
+		{
+			var drawer = new Drawer(zedGraph);
+			drawer.DrawExampleStabilityCycles();
+		}
 
 		private void HelpAboutItem_Click(object sender, EventArgs e)
 		{
+			MessageBox.Show("Will appear in the next updates. Try help -> Run example.");
 		}
 	}
 }
