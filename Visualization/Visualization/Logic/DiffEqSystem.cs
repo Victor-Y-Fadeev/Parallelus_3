@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using ZedGraph;
 
 namespace Visualization
@@ -61,89 +59,103 @@ namespace Visualization
 			return result;
 		}
 
-		public void FindStabilityCycles(double start, double end)
+		public Cycles FindStabilityCycles(PointPair startPoint, double endOfInterval)
 		{
-			var x = _initialData.X;
-			var y = _initialData.Y;
-			var list = new PointPairList {new PointPair(x, y)};
-			var needCheck = true;
-			var yLast = y;
-			var counter = 0;
-			var isToRight = true;
-			
-			if (yLast == 0)
+			const double step = 0.1;
+			var point = FindCentre(startPoint);
+			var cycles = new Cycles();
+			if (point == null)
 			{
-				counter = -1;
+				point = startPoint;
+				point.X += 0.1;
 			}
-			
-			for (var i = 0; i < 10000; i++)
-			{
-				list.Add(NextPoint(x, y, 0.00001));
-				x = _currentPoints.X;
-				y = _currentPoints.Y;
-				if (needCheck)
-				{
-					if (y < 0 && yLast >= 0)
-					{
-						yLast = y;
-						counter++;
-					}
-					else if (y > 0 && yLast <= 0)
-					{
-						yLast = y;
-						counter++;
-					}
 
-					if (counter == 2)
+			startPoint = point;
+			point = PassFewSemicircle(point, 2);
+			var lastDirection = GetDirection(startPoint.X, point.X);
+			
+			while (point != null && point.X < endOfInterval)
+			{
+				startPoint = point;
+				point = PassFewSemicircle(point, 2);
+				const double accuracy = 0.000001;
+				var newDirection = GetDirection(startPoint.X, point.X);
+				if (newDirection != lastDirection)
+				{
+					if(lastDirection == 1)
 					{
-						needCheck = false;
-						isToRight = x > _initialData.X;
+						FindCycleApproximatePoints(ref cycles, startPoint, point, accuracy, true);
 					}
+					else
+					{
+						FindCycleApproximatePoints(ref cycles, startPoint, point, accuracy, false);
+					}
+				}
+
+				point.X += step;
+			}
+
+			return cycles;
+		}
+
+		private void FindCycleApproximatePoints(ref Cycles cycles, PointPair left, PointPair right, 
+												double accuracy, bool isStable)
+		{
+			var newPoint = left;
+			
+			while (right.X - left.X > accuracy)
+			{
+				newPoint.X = left.X + (right.X - left.X) / 2;
+				var point = PassFewSemicircle(newPoint, 2);
+				if (GetDirection(newPoint.X, point.X) == 1)
+				{
+					left = newPoint;
+				}
+				else
+				{
+					right = newPoint;
 				}
 			}
 
-			var result = new Result(list, isToRight);
-			//return result;
+			const double step = 0.00001;
+			const int quantitySteps = 90000;
+			SetNewInitialData(left.X, left.Y);
+			if (isStable)
+			{
+				cycles.Stable.Add(GetResult(step, quantitySteps).GraphicPounts);
+			}
+			else
+			{
+				cycles.UnStable.Add(GetResult(step, quantitySteps).GraphicPounts);
+			}
 		}
 
 		private PointPair FindCentre(PointPair point)
 		{
-			const double error = 0.01;
-			var x0 = point.X;
-			var y0 = point.Y;
-			var h = 0.0001;
-			
-			
-			var nextPoint = NextPoint(x0, y0, h);
-			
-			if (x0 == nextPoint.X && y0 == nextPoint.Y)
+			const double error = 0.01; // 0.1
+			PointPair newPoint;
+
+			do
 			{
-				// скорее всего мы в центре
-			}
-			else
-			{
-				var direction = GetDirection(nextPoint.X, PassFewSemicircle(nextPoint, 2).X);
-				switch (direction)
+				newPoint = PassFewSemicircle(point, 1);
+				if (newPoint == null)
 				{
-					case -1:
-					{
-						break;
-					}
-					case 1:
-					{
-						break;
-					}
-					case 0:
-					{
-						break;
-					}
-					default:
-					{
-						throw new Exception("Find Centre. Incorrect direction.");
-					}
+					return null;
 				}
-			}
-			return null;
+				if (point.X < newPoint.X)
+				{
+					newPoint.X -= (newPoint.X - point.X) / 2;
+				}
+				else if (point.X > newPoint.X)
+				{
+					var p = newPoint;
+					newPoint = point;
+					point = p;
+				}
+				
+			} while (newPoint.X - point.X > error);
+
+			return newPoint;
 		}
 
 		private int GetDirection(double a, double b)
@@ -172,7 +184,7 @@ namespace Visualization
 			for (var i = 0; i < 2; i++)
 			{
 				var quantitySteps = 0;
-				var max = 100000;
+				const int max = 100000;
 				while (counter < quantity && quantitySteps < max)
 				{
 					quantitySteps++;

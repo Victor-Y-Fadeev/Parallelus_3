@@ -33,6 +33,18 @@ namespace Visualization
 			_zedGraph.AxisChange();
 			_zedGraph.Invalidate();
 		}
+		
+		private void DrawGraph(PointPairList points, string graphName, string title)
+		{
+			var pane = GraphicInit();
+			pane.Title.Text = title;
+			Random rand = new Random();
+			LineItem myCurve = pane.AddCurve(graphName, points,
+				Color.FromArgb(10 + rand.Next(245), 10 + rand.Next(245), 10 + rand.Next(245), 10 + rand.Next(245)),
+				SymbolType.None);
+			_zedGraph.AxisChange();
+			_zedGraph.Invalidate();
+		}
 
 		public void DrawEquation(DiffEqSystem diff, double x0, double y0)
 		{
@@ -69,7 +81,9 @@ namespace Visualization
 
 		public void DrawExampleStabilityCycles()
 		{
-			
+			var diff = new DiffEqSystem(-10.0, 2.7, 0.4, -437.5, 0.003);
+			var cycles = diff.FindStabilityCycles(new PointPair(0.1, 0), 10);
+			DrawGraph(cycles.UnStable[0], "111", "lol");
 		}
 	}
 }

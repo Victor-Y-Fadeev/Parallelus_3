@@ -49,6 +49,7 @@
     <Compile Include="Graphics\Drawer.cs" />
     <Compile Include="Graphics\EditorForm.cs" />
     <Compile Include="Graphics\Form.Designer.cs" />
+    <Compile Include="Logic\Cycles.cs" />
     <Compile Include="Logic\DiffEqSystem.cs" />
     <Compile Include="Logic\Result.cs" />
     <Compile Include="Program.cs" />
