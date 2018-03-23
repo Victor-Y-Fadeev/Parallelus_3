@@ -79,6 +79,10 @@ namespace Visualization
 			{
 				startPoint = point;
 				point = PassFewSemicircle(point, 2);
+				if (point == null)
+				{
+					return cycles;
+				}
 				const double accuracy = 0.001;
 				var newDirection = GetDirection(startPoint.X, point.X);
 				if (newDirection != lastDirection)
@@ -186,7 +190,7 @@ namespace Visualization
 			for (var i = 0; i < 2; i++)
 			{
 				var quantitySteps = 0;
-				const int max = 100000;
+				const int max = 1000000;
 				while (counter < quantity && quantitySteps < max)
 				{
 					quantitySteps++;
