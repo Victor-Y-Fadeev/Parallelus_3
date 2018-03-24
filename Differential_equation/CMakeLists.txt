@@ -8,7 +8,9 @@ add_executable(Differential_equation main.c
                 include/Analysis.h
                 include/Logic.h
                 include/Files.h
+                include/SpecialPoints.h
                 src/Structures.c
                 src/Analysis.c
                 src/Logic.c
-                src/Files.c)
+                src/Files.c
+                src/SpecialPoins.c)
