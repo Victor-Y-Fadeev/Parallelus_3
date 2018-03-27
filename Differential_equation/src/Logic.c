@@ -89,7 +89,7 @@ int attractor_course(Vector *vector, Interval *interval)
 
 const float fi(const float x, const float y)
 {
-	return x * x + x * y + x;
+	return x * x + x * y + y;
 }
 
 const float psi(Vector *vector, const float x, const float y)
