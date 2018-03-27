@@ -4,6 +4,8 @@
 
 #define STRANGE_ATTRACTORS 3
 
+void solution(Vector *vector, float h);
+int attractor_course(Vector *vector, Interval *interval);
 
 void auto_computation(Loader *loader, Saver *saver)
 {
@@ -73,7 +75,7 @@ int attractor_course(Vector *vector, Interval *interval)
 
 	for (int i = 0; i < points; ++i)
 	{
-		solution(vector, t, h);
+		solution(vector, h);
 
 		send_points(analyser, get_x(vector), get_y(vector));
 
@@ -103,7 +105,7 @@ const float psi(Vector *vector, const float x, const float y)
 	return a * x * x + b * x * y + c * y * y + alpha * x + beta * y;
 }
 
-void solution(Vector *vector, const float t, const float h)
+void solution(Vector *vector, const float h)
 {
 	const float x = get_x(vector);
 	const float y = get_y(vector);
