@@ -11,4 +11,4 @@ add_executable(Differential_equation main.c
                 src/Structures.c
                 src/Analysis.c
                 src/Logic.c
-                src/Files.c)
+                src/Files.c src/Solver.c)
