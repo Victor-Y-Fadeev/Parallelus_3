@@ -4,33 +4,33 @@
 
 typedef struct Vector
 {
-	float a;
-	float b;
-	float c;
-	float alpha;
-	float beta;
+	double a;
+	double b;
+	double c;
+	double alpha;
+	double beta;
 
-	float x;
-	float y;
+	Point *point;
 } Vector;
 
-typedef struct Interval
+typedef struct Region
 {
-	int steps;
-	float distance;
+} Region;
 
-	int points;
-	float h;
-} Interval;
+typedef struct Point
+{
+	double x;
+	double y;
+} Point;
 
 
-Vector *create_vector(const float a
-					, const float b
-					, const float c
-					, const float alpha
-					, const float beta
-					, const float x
-					, const float y)
+Vector *create_vector(const double a
+					, const double b
+					, const double c
+					, const double alpha
+					, const double beta
+					, const double x
+					, const double y)
 {
 	Vector *vector = malloc(sizeof(Vector));
 
@@ -39,148 +39,106 @@ Vector *create_vector(const float a
 	vector->c = c;
 	vector->alpha = alpha;
 	vector->beta = beta;
-	vector->x = x;
-	vector->y = y;
+	vector->point = create_point(x, y);
 
 	return vector;
 }
 
-Interval *create_interval(const int steps
-						, const float distance
-						, const int points
-						, const float h)
+Point *create_point(double x, double y)
 {
-	Interval *interval = malloc(sizeof(Interval));
-
-	interval->steps = steps;
-	interval->distance = distance;
-	interval->points = points;
-	interval->h = h;
-
-	return interval;
+	Point *point = malloc(sizeof(Point));
+	point->x = x;
+	point->y = y;
+	return point;
 }
 
+Point *get_point(Vector *vector)
+{
+	return vector->point;
+}
 
-const float get_a(const Vector *vector)
+const double get_x(const Point * point)
+{
+	return point->x;
+}
+
+const double get_y(const Point * point)
+{
+	return point->y;
+}
+
+const double get_a(const Vector *vector)
 {
 	return vector->a;
 }
 
-const float get_b(const Vector *vector)
+const double get_b(const Vector *vector)
 {
 	return vector->b;
 }
 
-const float get_c(const Vector *vector)
+const double get_c(const Vector *vector)
 {
 	return vector->c;
 }
 
-const float get_alpha(const Vector *vector)
+const double get_alpha(const Vector *vector)
 {
 	return vector->alpha;
 }
 
-const float get_beta(const Vector *vector)
+const double get_beta(const Vector *vector)
 {
 	return vector->beta;
 }
 
-const float get_x(const Vector *vector)
-{
-	return vector->x;
-}
-
-const float get_y(const Vector *vector)
-{
-	return vector->y;
-}
-
-
-const int get_steps(const Interval *interval)
-{
-	return interval->steps;
-}
-
-const float get_distance(const Interval *interval)
-{
-	return interval->distance;
-}
-
-const int get_points(const Interval *interval)
-{
-	return interval->points;
-}
-
-const float get_h(const Interval *interval)
-{
-	return interval->h;
-}
-
-
-void set_a(Vector *vector, const float a)
+void set_a(Vector *vector, const double a)
 {
 	vector->a = a;
 }
 
-void set_b(Vector *vector, const float b)
+void set_b(Vector *vector, const double b)
 {
 	vector->b = b;
 }
 
-void set_c(Vector *vector, const float c)
+void set_c(Vector *vector, const double c)
 {
 	vector->c = c;
 }
 
-void set_alpha(Vector *vector, const float alpha)
+void set_alpha(Vector *vector, const double alpha)
 {
 	vector->alpha = alpha;
 }
 
-void set_beta(Vector *vector, const float beta)
+void set_beta(Vector *vector, const double beta)
 {
 	vector->beta = beta;
 }
 
-void set_x(Vector *vector, const float x)
+void set_point(Vector *vector, Point *point)
 {
-	vector->x = x;
+	vector->point = point;
 }
 
-void set_y(Vector *vector, const float y)
+void set_x(Point *point, const double x)
 {
-	vector->y = y;
+	point->x = x;
 }
 
-
-void set_steps(Interval *interval, const int steps)
+void set_y(Point *point, const double y)
 {
-	interval->steps = steps;
+	point->y = y;
 }
-
-void set_distance(Interval *interval, const float distance)
-{
-	interval->distance = distance;
-}
-
-void set_points(Interval *interval, const int points)
-{
-	interval->points = points;
-}
-
-void set_h(Interval *interval, const float h)
-{
-	interval->h = h;
-}
-
 
 void delete_vector(Vector *vector)
 {
+	free(vector->point);
 	free(vector);
 }
 
-void delete_interval(Interval *interval)
+void delete_point(Point *point)
 {
-	free(interval);
+	free(point);
 }
