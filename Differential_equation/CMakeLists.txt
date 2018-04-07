@@ -13,4 +13,4 @@ add_executable(Differential_equation main.c
                 src/Analysis.c
                 src/Logic.c
                 src/Files.c
-                src/SpecialPoins.c)
+                src/SpecialPoins.c include/Minunit.h include/Test_SpecialPoins.h src/Test_SpecialPoints.c)

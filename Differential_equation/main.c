@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "include/Logic.h"
+#include "include/Test_SpecialPoins.h"
 
 
 void start(char *input, char *output)
@@ -16,6 +17,7 @@ void start(char *input, char *output)
 
 int main(const int argc, const char **argv)
 {
+	Test_SpecialPoints();
 	char *input = NULL;
 	char *output = NULL;
 
@@ -35,6 +37,7 @@ int main(const int argc, const char **argv)
 	}
 
 	start(input, output);
+
 
 	return 0;
 }

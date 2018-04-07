@@ -63,30 +63,6 @@ int solve_equation(Vector *vector, Interval *interval)
 	return attractors;
 }
 
-int attractor_course(Vector *vector, Interval *interval)
-{
-	const int points = get_points(interval);
-	const float h = get_h(interval);
-
-	Analyser *analyser = create_analyser(get_x(vector), get_y(vector));
-	float t = 0;
-
-	for (int i = 0; i < points; ++i)
-	{
-		solution(vector, t, h);
-
-		send_points(analyser, get_x(vector), get_y(vector));
-
-		t += h;
-	}
-
-	const int course = receive_course(analyser);
-
-	delete_analyser(analyser);
-
-	return course;
-}
-
 const float fi(const float x, const float y)
 {
 	return x * x + x * y + x;
@@ -125,4 +101,28 @@ void solution(Vector *vector, const float t, const float h)
 
 	set_x(vector, next_x);
 	set_y(vector, next_y);
+}
+
+int attractor_course(Vector *vector, Interval *interval)
+{
+	const int points = get_points(interval);
+	const float h = get_h(interval);
+
+	Analyser *analyser = create_analyser(get_x(vector), get_y(vector));
+	float t = 0;
+
+	for (int i = 0; i < points; ++i)
+	{
+		solution(vector, t, h);
+
+		send_points(analyser, get_x(vector), get_y(vector));
+
+		t += h;
+	}
+
+	const int course = receive_course(analyser);
+
+	delete_analyser(analyser);
+
+	return course;
 }
