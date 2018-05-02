@@ -57,13 +57,13 @@ Vector *load_vector(Loader *loader)
 		return NULL;
 	}
 
-	float a = 0;
-	float b = 0;
-	float c = 0;
-	float alpha = 0;
-	float beta = 0;
-	float x = 0;
-	float y = 0;
+	double a = 0;
+	double b = 0;
+	double c = 0;
+	double alpha = 0;
+	double beta = 0;
+	double x = 0;
+	double y = 0;
 
 	fscanf(loader->input
 		, "%e%e%e%e%e%e%e"
@@ -86,9 +86,9 @@ Interval *load_interval(Loader *loader)
 	}
 
 	int steps = 0;
-	float distance = 0;
+	double distance = 0;
 	int points = 0;
-	float h = 0;
+	double h = 0;
 
 	fscanf(loader->input
 		, "%d%e%d%e"
@@ -107,13 +107,13 @@ int reload_vector(Loader *loader, Vector *vector)
 		return -1;
 	}
 
-	float a = 0;
-	float b = 0;
-	float c = 0;
-	float alpha = 0;
-	float beta = 0;
-	float x = 0;
-	float y = 0;
+	double a = 0;
+	double b = 0;
+	double c = 0;
+	double alpha = 0;
+	double beta = 0;
+	double x = 0;
+	double y = 0;
 
 	fscanf(loader->input
 		, "%e%e%e%e%e%e%e"
@@ -144,9 +144,9 @@ int reload_interval(Loader *loader, Interval *interval)
 	}
 
 	int steps = 0;
-	float distance = 0;
+	double distance = 0;
 	int points = 0;
-	float h = 0;
+	double h = 0;
 
 	fscanf(loader->input
 		, "%d%e%d%e"
